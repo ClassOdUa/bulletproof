@@ -540,18 +540,20 @@ class BulletProof
         }
 
         $temp = imagecreatetruecolor($widthToCrop, $heightToCrop);
-                imagecopyresampled(
-                    $temp,
-                    $image,
-                    0,
-                    0,
-                    $widthTrim,
-                    $heightTrim,
-                    $widthToCrop,
-                    $heightToCrop,
-                    $widthToCrop,
-                    $heightToCrop
-                );
+        imageAlphaBlending($temp, false);
+        imageSaveAlpha($temp, true);
+        imagecopyresampled(
+            $temp,
+            $image,
+            0,
+            0,
+            $widthTrim,
+            $heightTrim,
+            $widthToCrop,
+            $heightToCrop,
+            $widthToCrop,
+            $heightToCrop
+        );
 
 
         if (!$temp) {
